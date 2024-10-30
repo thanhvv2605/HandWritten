@@ -13,7 +13,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 import pandas as pd
-# Test add dữ liệu
+# Test add dữ liệu ThanhVoVan
 
 # # Đọc dữ liệu từ file CSV
 # with open('hand_written.csv', 'r') as csv_file:
