@@ -12,34 +12,82 @@ import cv2  # OpenCV để đọc hình ảnh
 import numpy as np
 import matplotlib.pyplot as plt
 import os
+import pandas as pd
+# Test add dữ liệu
 
-# Đọc dữ liệu từ file CSV
-with open('hand_written.csv', 'r') as csv_file:
-    result = csv.reader(csv_file)
-    rows = []
-    for row in result:
-        rows.append(row)
-
-train_data = []
-train_label = []
+# # Đọc dữ liệu từ file CSV
+# with open('hand_written.csv', 'r') as csv_file:
+#     result = csv.reader(csv_file)
+#     rows = []
+#     for row in result:
+#         rows.append(row)
+#
+# train_data = []
+# train_label = []
+# # for letter in rows:
+# #         x = np.array([int(j) for j in letter[1:]])
+# #         x = x.reshape(28, 28)
+# #         train_data.append(x)
+# #         train_label.append(int(letter[0]))
+#
+# train_data = [] # dữ liệu training
+# train_label = [] # label của chúng
+#
 # for letter in rows:
+#     if (letter[0] == '0') or (letter[0] == '1') or (letter[0] == '2') or (letter[0] == '3'):
 #         x = np.array([int(j) for j in letter[1:]])
 #         x = x.reshape(28, 28)
 #         train_data.append(x)
 #         train_label.append(int(letter[0]))
+#     else:
+#         break
+#
+#
+# # Chuyển thành numpy arrays
+# train_data = np.array(train_data)
+# train_label = np.array(train_label)
+#
+# # Shuffle dữ liệu
+# shuffle_order = list(range(len(train_label)))
+# random.shuffle(shuffle_order)
+# train_data = train_data[shuffle_order]
+# train_label = train_label[shuffle_order]
+#
+# # Chia dữ liệu thành tập huấn luyện, kiểm thử và xác thực
+# train_x, test_x, train_y, test_y = train_test_split(train_data, train_label, test_size=0.2, random_state=42)
+# train_x, val_x, train_y, val_y = train_test_split(train_x, train_y, test_size=0.1, random_state=42)
 
-train_data = [] # dữ liệu training
-train_label = [] # label của chúng
+# Đường dẫn tới dataset
+dataset_path = '/kaggle/input/az-handwritten-alphabets-in-csv-format'
 
+# Kiểm tra các file có trong dataset để xác định tên file CSV
+print("Files in dataset directory:", os.listdir(dataset_path))
+
+# Đọc file CSV (giả sử tên file là 'A_Z Handwritten Data.csv', kiểm tra tên chính xác từ bước trên)
+csv_file_path = os.path.join(dataset_path, 'A_Z Handwritten Data.csv')
+data = pd.read_csv(csv_file_path)
+
+# Hiển thị thông tin cơ bản về dataset
+print("Dataset loaded successfully!")
+print("Dataset shape:", data.shape)
+print("First few rows of the dataset:")
+print(data.head())
+
+# Tách dữ liệu và nhãn từ dataset
+# Giả sử cột đầu tiên là nhãn và các cột còn lại là dữ liệu pixel
+rows = data.values.tolist()  # Chuyển DataFrame thành list để lặp qua từng dòng
+train_data = []  # dữ liệu training
+train_label = []  # label của chúng
+
+# Duyệt qua các hàng trong dữ liệu để lấy nhãn và dữ liệu
 for letter in rows:
-    if (letter[0] == '0') or (letter[0] == '1') or (letter[0] == '2') or (letter[0] == '3'):
-        x = np.array([int(j) for j in letter[1:]])
-        x = x.reshape(28, 28)
+    if letter[0] in [0, 1, 2, 3]:  # lấy các nhãn từ 0-3
+        x = np.array([int(j) for j in letter[1:]])  # lấy các cột dữ liệu (pixel)
+        x = x.reshape(28, 28)  # reshape thành 28x28 (giả sử ảnh có kích thước 28x28)
         train_data.append(x)
         train_label.append(int(letter[0]))
     else:
-        break
-
+        break  # dừng nếu nhãn không phải là 0, 1, 2, hoặc 3
 
 # Chuyển thành numpy arrays
 train_data = np.array(train_data)
@@ -55,6 +103,10 @@ train_label = train_label[shuffle_order]
 train_x, test_x, train_y, test_y = train_test_split(train_data, train_label, test_size=0.2, random_state=42)
 train_x, val_x, train_y, val_y = train_test_split(train_x, train_y, test_size=0.1, random_state=42)
 
+# Kiểm tra kích thước của các tập dữ liệu
+print("Training set size:", train_x.shape)
+print("Validation set size:", val_x.shape)
+print("Test set size:", test_x.shape)
 # Chuyển reshape dữ liệu thành dạng NCHW (batch_size, channels, height, width)
 train_x = train_x.reshape(-1, 1, 28, 28)
 val_x = val_x.reshape(-1, 1, 28, 28)
