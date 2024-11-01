@@ -13,8 +13,9 @@ import numpy as np
 import matplotlib.pyplot as plt
 import os
 import pandas as pd
-# Test add dữ liệu ThanhVoVan Test add data again
+# Test DEMO 1/11/2024 Lần 1
 
+print('Testing DataTest DEMO')
 # # Đọc dữ liệu từ file CSV
 # with open('hand_written.csv', 'r') as csv_file:
 #     result = csv.reader(csv_file)
@@ -295,6 +296,7 @@ def main():
     
     # In ra kết quả dự đoán
     print(f"Ký tự được dự đoán: {predicted_character}")
+    p
 
 # Gọi hàm chính
 if __name__ == "__main__":
