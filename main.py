@@ -16,7 +16,6 @@ import pandas as pd
 # Test DEMO 1/11/2024 Lần 1
 
 
-print('Testing DataTest push code using file')
 print('Testing Upload data to git')
 
 # # Đọc dữ liệu từ file CSV
