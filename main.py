@@ -16,7 +16,7 @@ import pandas as pd
 # Test DEMO 1/11/2024 Lần 1
 
 
-print('Testing Upload data to git')
+print('Vo Van Thanh 2/11')
 
 # # Đọc dữ liệu từ file CSV
 # with open('hand_written.csv', 'r') as csv_file:
