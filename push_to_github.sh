@@ -18,3 +18,9 @@ git commit -m "$1"
 git push origin main
 
 echo "Đã push code lên GitHub thành công!"
+
+
+# Cấp quyền 
+# chmod +x push_to_github.sh
+# run 
+# ./push_to_github.sh "Thông điệp commit của bạn"
