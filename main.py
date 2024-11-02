@@ -15,7 +15,7 @@ import os
 import pandas as pd
 # Test DEMO 1/11/2024 Lần 1
 
-print('Testing DataTest DEMO ThanhVo')
+print('Testing DataTest push code using file')
 # # Đọc dữ liệu từ file CSV
 # with open('hand_written.csv', 'r') as csv_file:
 #     result = csv.reader(csv_file)
