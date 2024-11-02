@@ -16,7 +16,7 @@
 # # Test DEMO 1/11/2024 Lần 1
 
 
-print('Vo Van Thanh 2/11')
+print('WRSN training...')
 
 # # # Đọc dữ liệu từ file CSV
 # # with open('hand_written.csv', 'r') as csv_file:
